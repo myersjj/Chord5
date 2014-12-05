@@ -1,0 +1,38 @@
+ToDo/Bugs
+
+- .chordrc on Unix 
+	Requester: Laurent Duperval
+	CRID: 1001
+	Status: fixed/tested by LD
+- Add reload chordrc 
+	Requester: Laurent Duperval
+	CRID: 1002
+	Status: accepted
+- Save display options to chordrc 
+	Requester: Laurent Duperval
+	CRID: 1003
+	Status: accepted
+- Fix Chord name sorting when printing grid chart
+	Requester: Martin Leclerc
+	CRID: 1004
+	Status: Fixed by ML
+	
+- switch cursor to hourglass when deft busy working
+	Requester: Martin Leclerc
+	CRID: 1005
+	Status: Fixed by ML
+
+- fix G13
+	Requester: Martin Leclerc
+	CRID: 1008
+	Status: Accepted
+
+- add full chord name to deft analysis panel
+	Requester: Martin Leclerc
+	CRID: 1006
+	Status: Fixed by ML
+
+- add index by artist
+	Requester: Martin Leclerc
+	CRID: 1007
+	Status: completed by ML

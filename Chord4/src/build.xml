@@ -1,0 +1,88 @@
+<project name="Chord4" default="lib" basedir=".">
+
+  <!-- set global properties for this build -->
+  <property name="version"  value="4.1.0"/>
+  <property name="src" value="."/>
+  <property name="classes" value="../classes"/>
+  <property name="lib"  value="../lib"/>
+  <property name="doc"  value="../doc"/>
+  <property name="etc"  value="../etc"/>
+  <property name="dist"  value="../dist"/>
+
+  <target name="init">
+    <!-- Create the time stamp -->
+    <tstamp/>
+    <!-- Create the build directory structure used by compile -->
+    <mkdir dir="${classes}"/>
+    <mkdir dir="${classes}/graphics"/>
+    <mkdir dir="${dist}"/>
+    <mkdir dir="${lib}"/>
+    <copy file="${etc}/chord.properties" todir="${classes}"/>
+      <copy todir="${classes}/graphics">
+        <fileset dir="${etc}/graphics"
+            includes="**/*"
+        />
+      </copy>
+  </target>
+
+  <target name="compile" depends="init">
+    <!-- Compile the java code from ${src} into ${build} -->
+      <propertyfile file="./build.properties">
+          <entry key="build.number" type="int" operation="+" value="1" pattern="000"/>
+      </propertyfile>
+      <property file="./build.properties"/>
+
+      <echo message= "Build ${build.number}"/>
+
+      <!-- replace the build.number token in ChordConstants -->
+      <delete file="${src}/com/scvn/chord/ChordVersion.java" />
+     <copy todir="${src}/com/scvn/chord" >
+        <fileset dir="${etc}">
+            <include name="ChordVersion.java"/>
+        </fileset>
+        <filterset>
+           <filter token="buildnumber" value="${build.number}"/>
+        </filterset>
+      </copy>
+
+      <javac debug="true" debuglevel="lines,vars,source" 
+      	includeantruntime="false" srcdir="${src}" destdir="${classes}"/>
+    </target>
+
+
+  <target name="dist-bin" depends="lib">
+     <zip zipfile="${dist}/Chord4-${version.number}_${build.number}-bin.zip">
+     	<zipfileset dir="${basedir}/${lib}" prefix="lib"/>
+     	<zipfileset dir="${basedir}/${doc}" prefix="doc"/>
+        <fileset dir="${etc}" includes="ReadMe.txt"/>
+        <fileset dir="${etc}" includes="ChangeLog.txt"/>
+     	</zip>
+  </target>
+
+  <target name="dist-src" depends="lib">
+     <zip zipfile="${dist}/Chord4-${version.number}_${build.number}-src.zip">
+     	<zipfileset dir="${basedir}/${src}" prefix="src"/>
+     	<zipfileset dir="${basedir}/${etc}" prefix="etc"/>
+     	<zipfileset dir="${basedir}/${lib}" prefix="lib"/>
+     	<zipfileset dir="${basedir}/${doc}" prefix="doc"/>
+     	</zip>
+  </target>
+  
+  <target name="dist" depends="clean,dist-src,dist-bin"/>
+
+  <target name="lib" depends="compile">
+  	<echo message= "Build jar"/>
+    <!-- Put everything in ${classes} into the MyProject-${DSTAMP}.jar file -->
+    <jar jarfile="${lib}/Chord4.jar" 
+    	basedir="${classes}" 
+    	manifest="${etc}/Manifest"/>
+  </target>
+
+  <target name="clean">
+    <!-- Delete the ${build} and ${dist} directory trees -->
+    <delete dir="${classes}"/>
+    <delete dir="${lib}"/>
+    <delete dir="${dist}"/>
+  </target>
+</project>
+

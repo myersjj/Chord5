@@ -1,0 +1,506 @@
+<HTML>
+<BODY>
+<TITLE>The Chord User Guide</TITLE>
+<H1>The Chord User Guide</H1>
+
+Martin Leclerc<BR>
+Mario Dorion<BR>
+<I>
+Version 4.0<BR>
+November 1999<BR>
+</I>
+<P>
+<OL>
+<LI><A HREF="#welcome">Welcome to the CHORD User Guide!</A></LI>
+<LI><A HREF="#example1">An Example</A></LI>
+<LI><A HREF="#usage">How do I use CHORD ?</A></LI>
+<LI><A HREF="#syntax">The Syntax</A></LI>
+<LI><A HREF="#example2">Another example</A></LI>
+<LI><A HREF="#knowledge">About the chords CHORD knows about</A></LI>
+<LI><A HREF="#preferences">About your preferences</A></LI>
+<LI><A HREF="#editor">The Chord Editor</A></LI>
+<LI><A HREF="#archives">Where to find CHORD files</A></LI>
+<LI><A HREF="#authors">The authors</A></LI>
+<LI><A HREF="#copyright">Copyright</A></LI>
+<LI><A HREF="#install">How do I install CHORD on my machine?</A></LI>
+
+
+</OL>
+
+<OL>
+<A NAME="#welcome"></A>
+<H2><LI>Welcome to the CHORD User Guide!</LI></H2>
+
+<B>CHORD</B> (aka ChoPro or ChordPro) is a utility developped by
+Martin Leclerc and  Mario Dorion 
+
+<P>
+<B>CHORD</B> will read an ascii file containing songs lyrics as well as <I>directives</I>
+that describes the chords and tablature needed to play a song on the guitar
+plus formatting information. CHORD will then generate a professional
+looking sheet-music version of your input file on your printer.
+
+<P>CHORD reads a text file
+containing the lyrics of a song, the chords to be played, their
+description and some other optional data to produce a printed
+document that includes:
+</P>
+<UL>
+<LI>A text editor with song editing functions</LI>
+<LI>Centered titles</LI>
+<LI>Chord names above the word</LI>
+<LI>Graphical representation of the chords at the end of the songs</LI>
+<LI>Multiple columns on a page</LI>
+<LI>Index of a songbook</LI>
+<LI>Configurable fonts for the lyrics and the chord names</LI>
+<LI>Multiple songs inside one file</LI>
+<LI>The complete ISO 8859-1 character set</LI>
+<LI>Chorus marking</LI>
+<LI>Drag and drop of files or directories into the editor</LI>
+</UL> 
+<P>
+You have a great many options on the final appearance of you songs. All of them are
+described in the section titled "Options"
+<P>
+For now, please read on to better understand what CHORD can do for you.
+<P>
+
+<A NAME="#example1"></A>
+<H2><LI>An Example</LI></H2>
+This is an example of a "source" file for CHORD, i.e. a file that is meant to be processed by CHORD.
+<PRE>
+{title:Love me tender}
+{subtitle:Presley/Matson}
+[G]Love me tender [A7]love me sweet [D7]Never let me [G]go
+[G]You have made my [A7]life complete [D7]and I love you [G]so
+{start_of_chorus}
+[G]Love me [B7]tender [Em]love me [G7]true
+[C]all my [Cm]dreams ful[G]fill
+[G]For [Dm6]my [E+]dar[E7]ling [A7]I love you
+[D7]and I always [G]will [Am7] [D7]
+{end_of_chorus}
+[G]Love me tender [A7]love me long [D7]Take me to your [G]heart
+[G]For it's there that [A7]I belong [D7]and we'll never [G]part
+{comment:Chorus}
+[G]Love me tender [A7]Love me dear [D7]Tell me you are [G]mine
+[G]I'll be yours through [A7]all the years [D7]till the end of
+[G]time
+{comment:Chorus}
+</PRE>
+Here are the important points about that file:
+<UL>
+<LI>It can be created using any text editor you like;
+<LI>All characters present in the ISO 8859-1 character set can be used.
+</UL>
+We will explain the content of that file. But first, let's look at the end result.
+<P>
+<IMG SRC="lovemetender.gif">
+<P>
+
+<A NAME="#usage"></A>
+
+<H2><LI>How do I use CHORD ?</LI></H2>
+Using CHORD is simple. Four steps are required:
+<OL>
+<LI>Type in the lyrics of the songs: this can be done with any text editor, or
+in the chord editor itself. 
+<LI>Insert the chord names between square brackets throughout the lyrics. The chord
+name will appear right above the letter that follows the closing bracket
+<PRE>
+Love me tender [A7]love me sweet [D7]Never let me [G]go
+</PRE>
+<LI>Insert any directive you want to give to CHORD: titles, sub-titles, chorus markers, 
+comments, etc.
+<PRE>
+{title:Love me tender}
+{subtitle:Presley/Matson}
+</PRE>
+<LI>Have  CHORD process your file. This will format or "render" your song. You can print this 
+ directly on any printer your computer knows about.
+</OL> 
+
+<A NAME="syntax"></A>
+<H2><LI>The Syntax</LI></H2>
+
+<H3>Chord names</H3>
+All chordnames must be build in the following way in order to be recognized: 
+ {note-name}[#|b][^/]* [ '/' {note-name}[#|b][^/]* ]
+ That is, a valid note name, possibly followed by '#' or 'b', followed
+by other modifier ('7', 'm', etc...). Many such construct can make up a
+chord name, as long as they are separated by '/'.
+<PRE>
+examples: A7 Ab A# Am Amaj7 A/E Asus2
+</PRE>
+<BR>
+ {note-name} must appear in the list 'A','B','C','D','E','F','G'.
+
+
+<H3>Directives</H3>
+A directive is a string of text that appears between french ("curly") brackets ('{' and '}') and
+has a special meaning to CHORD. It contains a message that will affect the way CHORD
+ processes your file. Examples of directive uses would be: changing the
+fonts, marking a chorus, and defining a title.
+<P>
+Directives must be alone on a line. Blanks before the opening bracket and after the
+closing bracket are not significant. Blanks inside a directive are ignored.
+<P>
+Supported directives are:
+<UL>
+
+<LI><B>chordfont: font</B> Sets the name of the font used to display chord names..
+
+<LI><B>chordsize: n</B> Sets the size of the font used to display chord names.
+
+<LI><B>columns:n</B> or <B>col: n</B> Specifies the number of columns on the pages 
+of  the current song.
+
+<LI><B>column_break</B> or <B>colb</B> Forces a column break. The next  line  of  
+the  song will  appear  in  the
+next available column, at the same height as the last "columns" state-
+ment if still on  the  same page, or at the top of the page otherwise.
+
+<LI><B>comment: or c:</B> Will call the printing of the rest of the line, highlighted 
+by a grey box.
+(Useful to call a chorus, for example)
+
+<LI><B>comment_italic:</B> or <B>ci:</B>
+Will print the comment in an italic font... well not really, it will print
+the comment in the font used for printing the chord names (which is
+normally italic unless you specified a different chord_font).
+
+<LI><B>comment_box:</B> or <B>cb:</B>Will print the comment inside a bounding box.
+
+<LI><B>define: name base-fret offset frets str1...str6</B>
+Defines a new chord called "name". The keyword "base-fret" indicates
+that the number that follows ("offset") is the first fret that is to be displayed 
+when representing the way this chord is played.
+The keyword "frets" then appears and is followed by 6 values. These
+values are the fret number [ 1 to n ] for each string [str1 to str6] and are
+RELATIVE to the offset. A value of "-", "X" or "x" indicates a string
+that is not played.
+Keywords base-fret and frets are mandatory.
+A value of 0 for a given string means it is to be played open, and will
+be marked by a small open circle above the string in the grid. The
+strings are numbered in ascending order of tonality, starting on the low
+E (the top string). On output, a chord defined in the user's .chordrc file
+will have a small asterisk near its grid, a chord defined in a song will
+have two small asterix. At the beginning of every song, the default
+chords are reloaded and the user's .chordrc file is reread. Chord definition of new 
+chords inside the text of a song are only valid for that song.
+The syntax of a {define} directive has been modified in CHORD 3.5.
+CHORD will attempt to recognize an old-format {define} and will
+accept it. It will, though, print a warning inviting you to modify your
+input file to use the new syntax (the exact {define} entry to use is provided as an example).
+
+<LI><B>end_of_chorus</B>  or <B>eoc</B>
+Marks the end of the chorus.
+
+<LI><B>end_of_tab</B> or <B>eot</B> Will stop using monospace font. The effect is 
+implicit at the end of a
+song.
+
+<LI><B>new_page</B> or <B>np</B> Will force a logical page break (which will obviously 
+turn out to be a
+physical page break if you are not in either 2-up or 4-up mode).
+
+<LI><B>new_physical_page</B> or <B>npp</B> Will force a physical page break (in any mode).
+
+<LI><B>no_grid</B> or <B>ng</B> Will disable printing of the chord grids for the current song.
+grid or g Will enable the printing of the chord grids for the current song (subject
+to the limitation caused by the usage of the -g option). This directive
+will override the runtime -G option for the current song.
+
+<LI><B>signature</B> or <B>sig</B> A string of text to appears at the top right corner of every
+rendered page. If an absolute path name, is assumed to be to name of a GIF or JPEG image to be use
+for the same purpose. Default to a "Output by Chord 4.0" image.
+
+<LI><B>start_of_chorus</B> or <B>soc</B>
+Which indicates the start of a chorus (yep). The complete chorus will
+be highlighted by a change bar, to be easily located by the player.
+
+<LI><B>start_of_tab</B> or <B>sot</B> Will cause chord to use a monospace 
+(i.e.: non-proportional) font for
+the printing of text. This can be used to enter 'tab' information where
+character positioning is crucial. The Courier font is used with the same
+point-size as the rest of the text.
+
+<LI><B>subtitle:</B> or <B>st:</B> Specifies a string to be printed right below the 
+title. Many subtitles can
+be specified.
+
+<LI><B>textfont: font</B> Sets the name of the font used to display text.
+
+<LI><B>textsize: n</B> Sets the size of the font used to display text.
+
+<LI><B>title:</B> or <B>t:</B> Specifies the title of the song. It will appear centered 
+at the top of the
+first page, and at the bottom of every other page, accompanied there by
+the page number, within the current song.
+
+</UL>
+
+<H3>Putting comments in your files</H3>
+A line starting with a '#' is interpreted as a comment, and generates no output.
+(although all your comments are automatically mailed to the authors, and we read
+them at parties...)
+
+<A NAME="#example2"></A>
+<H2><LI>Another example</LI></H2>
+<P>
+This example uses some of the more advanced directives:
+<PRE>
+{title: Everybody Hurts}
+{subtitle: REM}
+{define: G base-fret 1 frets 3 2 0 0 3 3}
+{define: D4 base-fret 1 frets - - 0 0 3 -}
+{define: E base-fret 1 frets - 3 3 2 0 0}
+[D]Intro [G] [D] [G]
+[D]When your day is [G]long and the [D]night, the night is [G]yours a[D]lone
+[D]When you're sure you've had e[G]nough of this [D]life, well [G]hang on
+{start_of_tab}
+ E(low)-3-2-0-
+{end_of_tab}
+[E]Don't let yourself [A]go, [E]cause everybody [A]cries [E]and everybody[A]
+hurts some[D]times [G]
+Sometimes everything is [D]wrong, [G]now it's time to sing a[D]long
+When your day is night alone [G] (hold [D]on, hold on)
+If you feel like letting go [G] (hold [D]on)
+If you think you've had too [G]much of this [D]life, well hang [G]on
+[E]Cause everybody [A]hurts, [E]take comfort in your [A]friends
+[E]Everybody [A]hurts, [E]don't throw your [A]hands, oh [E]now, don't throw
+your [A]hands
+[C]If you feel like you're [D4]alone, no, no, no, you're not [A]alone
+{start_of_tab}
+ D4->
+E-0-----0-----0-----0--
+B---3-----3-----3------
+G-----0-----0-----0----
+{end_of_tab}
+[D]If you're on your [G]own in this [D]life, the days and nights are [G]long
+[D]When you think you've had too [G]much, with this [D]life, to hang [G]on
+{start_of_chorus}
+[E]Well everybody [A]hurts, some[E]times
+Everybody [A]cries, [E]and everybody [A]hurts,[N.C.] ... some[D]times [G]
+{end_of_chorus}
+But everybody [D]hurts [G]sometimes so hold [D]on, hold [G]on, hold [D]on
+Hold on, [G]hold on, [D]hold on, [G]hold on, [D]hold on
+[G]Everybody [D]hurts [G] [D] [G]
+[D]You are not alone [G] [D] [G] [D] [G]
+#Picking pattern for the chords:
+# D G
+#E----------2-----------2-------------3-----------3-----------------------
+#B--------3---3-------3---3---------3---3-------3---3---------------------
+#G------2-------2---2-------2-----0-------0---0---------------------------
+#D----0-----------0-------------------------------------------------------
+#A------------------------------------------------------------------------
+#E------------------------------3-----------3-----------------------------
+</PRE>
+See the result:
+<P>
+<IMG SRC="everybodyhurts.gif">
+<P>
+Look for the tablatures and the modified definitions
+of chords G, D4 and E.
+<P>
+
+
+<A NAME="#knowledge"></A>
+<H2><LI>About the chords CHORD knows about</LI></H2>
+CHORD knows of about 360 chords. Now, we KNOW your favorite chord won't be
+in there, and if it is, it will be all wrong. So we put in a facility for people to define
+their own chords. This facility will also let you redefine already defined chords. For
+the details, look in the "Directives" section of this guide, for the "define" directive.
+<P>
+
+
+<A NAME="#preferences"></A>
+<H2><LI>About your preferences</LI></H2>
+You can store your preferences about fonts and chords in a file that is unique to
+every user. This file is names "chordrc". 
+<P> First we look for a runtime value for the "CHORDRC" system property. 
+This is something you might have added to the argument 
+of the Java runtime invocation, using a "-DCHORDRC=somefile" construction.
+The we look in the users's home direcetory for a file called "chordrc". 
+Then we look for a file called "chordrc" in the directory
+from which the application was launched. We read only one file. 
+<P>For the list of the preferences you can have, see the "Directives" section.
+<P>
+
+
+<A NAME="#editor"></A>
+<H2><LI>The Chord Editor</LI></H2>
+The Editor is a simple text editor that supports drag and drop. Dragging a single file opens that
+file in the editor. Dragging in a directory or many files or directories brings the list
+of names in the editor.
+<P>
+That is because the process of rendering your documents can be done by processing the content
+of the editor as "Chord input" or as a list of Chord files. See The editor menus below. 
+
+<H3>The Chord Editor Menus</H3>
+<P>
+<IMG src=menuFile.gif><BR>
+<B>Open</B>, <B>Close</B>, <B>Save</B>, <B>Save as</B> and <B>Quit</B> behave as expected.
+
+<P>
+<IMG src=menuEdit.gif><BR>
+<UL>
+<LI><B>Copy</B>, <B>Cut</B> and <B>Paste</B> behave as expected.
+<LI><B>Grab Chords</B>: build a list of the chords found in the selected text. 
+The content of the list is displayed in 
+the bottom status bar. Clicking anywhere
+in the document then paste a single chord from the list. Shift+Click
+puts the last inserted chord back in the list.
+<LI><B>Exit Chord paste mode</B>: flushed the list and returns to normal editing.
+<LI><B>Strip chords</B>: removes all chords found in the selected text.
+</UL>
+<P>
+
+<IMG src=menuProcess.gif><BR>
+<UL>
+<LI><B>As Chord Input</B>: Proceeds to render the content of the editor according to the directives it 
+contains.
+<LI><B>As list of files</B>: Reads each file name (one per line) and renders the content of that file. 
+All listed files become part of a single rendered, printable document
+<LI><B>Options</B>:Brings forward the list of Options that will be used when rendering your documents.
+
+	<H2>Options</H2>
+	<IMG src=options.gif><P>
+	Here are the processing options recognized by CHORD. This Option pane appears when you use 
+	any of the two
+	items under the process menu, in the Chord editor.
+	<BR>
+	<H3>The Fonts section</H3>
+	Sets the size, in points, and the names of the fonts used to display text and chords names.
+	
+	<H3>The Options section</H3>
+	<UL>
+	<LI><B>No grids</B>:
+	  Disable printing of the chord grids for the whole input file(s). The effect can be disable 
+	  for any particular song by the usage of the <B>grid</B> or <B>g</B> directive.
+	<LI><B>Generate table of contents</B>:
+	  Generates a table of contents with the song titles and page numbers. It implies page 
+	  numbering through the document. Index pages are not numbered.
+	<LI><B>Even page number on left</B>:
+	  Places the odd and even page numbers in the lower right and left corners respectively 
+	  (for two-sided output). The default is all page numbers on the right.
+	<LI><B>Only print lyrics</B>:
+	  Prints only the lyrics of the song.
+	<LI><B>Number logical pages, not physical</B>:
+	  No used today. Used for n-up printing, no yet supported.
+	<LI><B>No grids for easy chords</B>:
+	  Disable printing of grids for "easy" chords. Whether a built-in chord is easy or not 
+	  has been arbitrarily decided by the authors. The general rule was that any chord in its major,
+	  minor, 7th or minor 7th was "easy" while everything else (maj7, aug, dim,sus, etc...) was "tough". 
+	  All chords defined in the $HOME/.chordrc file
+	  or in the input file are defined as "tough".
+	<LI><B>Starting page number</B>:
+	  Numbers the pages consecutively starting with first_page (e.g. 1).
+	<LI><B>Set chord grid size</B>: Set the size of the grids at the end of each song.
+	<LI><B>Transpose by this many halftones</B>:
+	  Sets up transposition to that number of halftones. Can not be zero. 
+	<LI><B>Locale</B>:
+	</UL>
+</UL>
+
+<P>
+<IMG src=menuUtils.gif><BR>
+<UL>
+<LI><B>Print known chords as grids</B>Generates a text Chord Chart of all internally known chords as well as chords defined 
+in the $HOME/.chordrc file. Chords defined in the .chordrc file.
+suitable for input to the .chordrc file.
+<LI><B>Sort this list of files</B>: Prompts the user for a delimiter string.
+If the string is left empty, the lines of the file are sorted in ascending order. If the delimiter
+is not empty, the lines are sorted in ascending order <I>using only the part of the line
+that follows the delimiter on this line</I>
+<BR>
+For example:
+<PRE>
+D:\Martin\songs\pop\w\Beatles_WithALittleHelpFromMyFriends
+D:\Martin\songs\pop\w\CatStevens_WildWorld
+D:\Martin\songs\pop\w\JohnLennon_Woman
+D:\Martin\songs\pop\w\JimCorcoran_WelcomeSoleil
+D:\Martin\songs\pop\w\LouReed_WalkOnTheWildSide
+D:\Martin\songs\pop\w\MarcCohn_WalkingInMemphis
+D:\Martin\songs\pop\w\Nilsson_WithoutYou
+D:\Martin\songs\pop\w\PeterSarstedt_WhereDoYouGo
+D:\Martin\songs\pop\w\SamCooke_WonderfulWorld
+D:\Martin\songs\pop\w\U2_WithOrWithoutYou.crd
+</PRE>
+becomes
+<PRE>
+D:\Martin\songs\pop\w\MarcCohn_WalkingInMemphis
+D:\Martin\songs\pop\w\LouReed_WalkOnTheWildSide
+D:\Martin\songs\pop\w\JimCorcoran_WelcomeSoleil
+D:\Martin\songs\pop\w\PeterSarstedt_WhereDoYouGo
+D:\Martin\songs\pop\w\CatStevens_WildWorld
+D:\Martin\songs\pop\w\Beatles_WithALittleHelpFromMyFriends
+D:\Martin\songs\pop\w\U2_WithOrWithoutYou.crd
+D:\Martin\songs\pop\w\Nilsson_WithoutYou
+D:\Martin\songs\pop\w\JohnLennon_Woman
+D:\Martin\songs\pop\w\SamCooke_WonderfulWorld
+</PRE>
+if "_" is used as a delimiter
+</UL>
+
+
+
+<H3>The Chord Renderer Menus</H3>
+<UL>
+<LI>The <B>File</B> menu includes the standard <B>Print</B>, <B>Page Setup</B>,
+ and <B>Exit</B> menu items
+<LI>The <B>View</B> menu includes the standard <B>Next Page</B>, <B>Previous Page</B>,
+and <B>Go To Page...</B>
+menu items.
+</UL>
+
+
+<A NAME="#archives"></A>
+<H2><LI>Where to find CHORD files</LI></H2>
+CHORD having been around since 1991 there is a number of CHORD  input files
+freely available if you have access to the Internet.
+Look for file with the extensions CRD, .CHO, 
+.CRDPRO, .CHOPRO or .CHORDPRO.
+The following USENET newsgroup are often used to post or request chord and tab
+files: rec.music.makers.guitar.tablature, alt.guitar.tab
+
+<A NAME="#authors"></A>
+<H2><LI>The authors</LI></H2>
+CHORD has been developed by Martin Leclerc and Mario Dorion, in Montreal, Canada.
+We're stilldeveloping and supporting CHORD.
+Feel free to contact us via e-mail to suggest improvements and report bug fixes.
+Our email addresses are martin_a_leclerc@yahoo.com and mario@dorion.org.
+
+<A NAME="#copyright"></A>
+<H2><LI>Copyright</LI></H2>
+The CHORD utility for guitar players is distributed under the terms of the
+general GNU license"
+<P>
+"Copyright (C) 2001  Martin Leclerc & Mario Dorion
+<P>
+This program is free software; you can redistribute it and/or
+modify it under the terms of the GNU General Public License
+as published by the Free Software Foundation; either version 2
+of the License, or (at your option) any later version.
+<P>
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+<P>
+You should have received a copy of the GNU General Public License
+along with this program; if not, write to the Free Software
+Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA."
+<P>
+ 
+<A NAME="#install"></A>
+<H2><LI>How do I install CHORD on my machine?</LI></H2>
+Chord requires the Java runtime (JRE) to be present on your machine. The minimum version
+required to tun Chord is 1.3.1. You can download this from Javasoft 
+<A HREF="http://www.javasoft.com/">here.<A>
+<P>
+Once installed, all you need to invoke is "javaw -jar <full_path_to_chord4.jar>. You can
+easily create a shortcut on your Windows(tm) desktop that point to 
+"c:\windows\system\javaw.exe -jar <full_path_to_chord4.jar>". Under Unix, the same 
+desktop setup is platform specific (CDE, OpenWindows, Linux...), but the launch command is the same.
+
+

@@ -1,0 +1,155 @@
+12-5-2014: JM converted to java.util.logging to use log file
+12-4-2014: JM Added saving settings file
+12-4-2014: JM added toolbar entries
+12-4-2014: JM Added refresh option on render pane
+
+12-1-2014: VERSION 4.1 started by James J Myers
+
+01-01-2003: LD Added some tooltips on menu bar.
+
+30-12-30: ML changed Color constant red for RED in ColorView, to maintain 1.3 compatibility
+
+05-12-2002: ML fixed a bug in transposition of base notes
+
+28-11-2002: ML changed the syntax highlighting to use the Swing provided EditorKit model
+		new classes ColorView and ColorEditorKit implement the change
+
+24-11-2002: ML fixed a bug to options mgmt introduced the day before.
+            ML fixed bug with optionFrame locale list.
+
+23-11-2002: ML fixed a bug with the position of the first chord on any line
+	    ML added support for the no_toc directive in chordrc (pending 
+	    	full solution to user preferences persistence)
+
+18-11-2002: ML modified code in Page.drawString to work around a Mac specific bug
+            ML misc code cleanups
+
+04-11-2002: LD added preliminary copyright insertion code (incomplete)
+            LD added new icons to toolbar
+			LD misc fixes
+
+16-09-2002: ML rewrote menu classes and added the toolbar
+
+15-09-2002: ML released build 107
+
+14-09-2002: ML finished syntax highlighting code
+
+12-09-2002: ML fixed textsize and chordsize setter in renderer
+
+09-09-2002: ML changed font above grids to be same as chord name above text
+
+09-09-2002: ML changed list of valid font sizes to 5,6,8,9,10,12,14,18,24
+
+08-09-2002: ML fixed bug in KnownChord preventing override of
+builtin chords in define statements. compareTo() was guilty.
+
+10-07-2002: ML added index by subtitle
+
+10-07-2002: ML integrated deft with the chord UI
+
+23-04-2002: ML many fixes to Deft.posok()
+
+21-04-2002: ML adds the deft (DEFine Tool) module. Not used directly by 
+chord just yet, but invokable the com.scvn.chord.deft.Deft class.
+
+21-04-2002: ML added the A2CRD modules into the code, as the edit->merge
+menu item.
+
+2002-01-04: LD added check for file modification before New, Open and Quit.
+  Added confirmation dialog before overwriting existing file.
+
+31-12-2001: ML changes background color for comments
+from green to lightgrey
+
+31-12-2001: Another UI fix: Exit changed to Close in renderer window.
+  Also put in an accelerator.
+
+31-12-2001: LD added accelerators to open a file and to quit.
+
+29-12-2001: ML added help menu, with external launch of browser
+on the user guide (doc/index.html). (requested by MD)
+
+28-12-2001: fixed error handling on bad parameters to directives.
+(Bug reported by MD)
+
+27-12-2001: ML added splash screen
+
+26-12-2001: ML deactivated menus during startup
+
+19-12-2001: ML added a "Goto Page" Menu item in the renderer
+  Direct access to a specific page within the renderer
+  
+19-12-2001: ML added a "Sort List of files" in the Editor
+  Only useful when rendering list of files:
+  When used, the user is prompted for a delimiter string.
+  The current content of the Editor (as list of files)
+  is then sorted according to everything AFTER the LAST occurence
+  of the delimiter. Useful when sorting files from multiple 
+  directories, or when song names are nom at the beginning of the file name.
+
+NEW In VERSION 4.0
+
+o New rewrite in Java giving us
+  o no more postscript-only output. Printing is handled thru
+  your Operating System on any platform.
+o An Editor with
+  o Chord stripping
+  o Chord grabbing and pasting
+  o Graphical Rendering and printing options
+
+NEW IN VERSION 3.6
+
+o Song index is sorted
+o .chordrc is read only once per execution
+o Speed improvement by a factor of ~5
+o support of multiple columns
+o better (I hope...) support of A4 format
+o inclusion of a2crd to convert ASCII files to chord format
+o Chords defined multiples times ALL stay in the known chord structure, so
+that 'chord -D' shows them all, even if the names are duplicates.
+o bug fixes
+
+NEW IN VERSION 3.5
+
+o Generation of PostScript indexes.
+o Generation of PostScript chord-charts.
+o Additional 'comments' style (box and italic).
+o Directive to set a monospace font (ie: not-proportional) suitable for
+  tabs.
+o Support for A4 paper format.
+o Page numbers are now "physical page numbers".
+o Chord-charts (-dump option) now include chords from .chordrc file.
+o Option to print/not-print page numbers.
+o Option to print/not-print chord grids.
+o Option to print grids only for "difficult" chords.
+o Directive to force a physical page break.
+o Directive to force a virtual page break.
+o Chords are printed in a logical order.
+o Special chord [N.C.] (no-chord) without a chord grid.
+o New (and improved!) {define} syntax.
+o Chord names and directives are case-insensitive.
+o Public domain getopt() routine (for portability).
+o (almost) lint free (better portability)
+o Ansi-C compliant
+o ... and bug fixes
+
+NEW IN VERSION 1.2
+
+o More flexible Page Numbering
+  o Left/right
+  o always-present
+  o an option for simgle spacing on lines with no chords
+o Distinction between an unplayed string and a buffed one
+o TOC generation
+o Some bug fixes
+
+NEW IN VERSION 1.1
+
+o CHORD supports transposition. See the man page.
+o miscellanious bug fixes, including dubious coding that kept IBM and
+  SGI from executing CHORD properly
+o the grids now indicate string played open
+o Error messages noe correctly report the name of the file and
+  the line number where the error was found
+
+
