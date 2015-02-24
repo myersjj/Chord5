@@ -70,7 +70,7 @@ public class OptFrame extends JFrame implements ActionListener, ChordConstants, 
         gbc.anchor = GridBagConstraints.WEST;
         gbc.insets = new Insets(2,5,2,5);
         fontList = GraphicsEnvironment.getLocalGraphicsEnvironment().getAvailableFontFamilyNames();
-        String fontSizes[] = new String[] {"5", "8", "9", "10", "12", "14", "16", "18", "20", "24"};
+        String fontSizes[] = new String[] {"5", "8", "9", "10", "11", "12", "13", "14", "16", "18", "20", "24"};
 
         
         miscPanel = new JPanel();

@@ -57,10 +57,8 @@ public class Settings extends Observable implements ChordConstants {
 			optSets.load(in);
 			in.close();
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
     }
@@ -112,7 +110,6 @@ public class Settings extends Observable implements ChordConstants {
 			optSets.store(out, "---No Comment---");
 			out.close();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
     }
@@ -154,8 +151,15 @@ public class Settings extends Observable implements ChordConstants {
     }
     
     public void reset(String src) {
-        //Hashtable srcHash = (Hashtable)(optSets.get(src));
-        //srcHash.clear();
+    	// remove all entries starting with src.
+    	Enumeration<?> states;
+    	
+    	for (Enumeration str = optSets.propertyNames(); str.hasMoreElements();) {
+    		String key = (String) str.nextElement();
+    		if (key.startsWith(src + ".")) {
+        	   optSets.remove(key);
+           }
+        }
     }
     public String getTextFontName() {
         return get(TEXTFONTNAME);

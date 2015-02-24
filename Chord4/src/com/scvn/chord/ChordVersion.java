@@ -8,5 +8,5 @@
 package com.scvn.chord;
 
 public interface ChordVersion {
-    public final static String CHORDVERSION = "Chord Editor 4.1 Alpha (build 221)";
+    public final static String CHORDVERSION = "Chord Editor 4.1 Alpha (build 227)";
 }

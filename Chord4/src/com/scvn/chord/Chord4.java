@@ -94,8 +94,6 @@ public class Chord4 extends JFrame implements  DropTargetListener, ChordConstant
 //        if (daysLeft < 30) {
 //            JOptionPane.showMessageDialog(this, "License valid for " + daysLeft + " days.");
 //        }
-        initGUI();
-        settings = new Settings();
         try {
 			fileHandler  = new FileHandler("./chord4.log");
 			LOGGER.addHandler(fileHandler);
@@ -111,9 +109,11 @@ public class Chord4 extends JFrame implements  DropTargetListener, ChordConstant
         LOGGER.setLevel(Level.ALL);
         LOGGER.info("Logger Name: "+LOGGER.getName());
         
+        settings = new Settings();
         if (settings.getShowSplash()) {
         	new SplashWindow("/graphics/splash.jpg", this, 5000);
         }
+        initGUI();
         setStatus("Building knowledge base");
         //Logger.setDebug(true);
         //Logger.setInfo(true);
